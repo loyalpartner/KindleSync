@@ -17,11 +17,12 @@ from email.utils import formataddr
 
 import yaml
 
-SENDER = "loyalpartner@163.com"
-RECEIVERS = [SENDER, 'loyalpartner@kindle.cn', 'loyalpartner_91@kindle.cn']
-
 
 class KindleSync:
+    """
+    Kindle Sync Tool
+    """
+
     def __init__(self, sender, receivers, smtp, password):
         self.sender = sender
         self.receivers = receivers
@@ -56,9 +57,10 @@ class KindleSync:
             server = smtplib.SMTP(self.smtp)
             server.login(self.sender, self.password)
             server.sendmail(self.sender, self.receivers, self.msg.as_string())
-            print("*邮件* \r\n%s\r\n  发送成功!"% (title))
+            print("*邮件* \r\n%s\r\n  发送成功!" % (title))
 
-            for f in self.attaches: os.remove(f)
+            for file in self.attaches:
+                os.remove(file)
         except smtplib.SMTPException:
             print("Error: 无法发送邮件")
 
@@ -77,14 +79,14 @@ def main():
 
     password = open("pwd").readline().strip()
 
-    syncTool = KindleSync(
+    sync_tool = KindleSync(
         config.get("sender"), config.get("receivers"), config.get("smtp"),
         password)
 
-    for f in files:
-        syncTool.add_attach(f)
+    for file in files:
+        sync_tool.add_attach(file)
 
-    syncTool.sync()
+    sync_tool.sync()
 
 
 if __name__ == '__main__':
