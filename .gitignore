@@ -1,4 +1,8 @@
 pwd
+*.mobi
+*.epub
+*.pdf
+*.jpeg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

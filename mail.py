@@ -67,7 +67,7 @@ class KindleSync:
 
 def is_ebooks(filename):
     """is ebook"""
-    exts = [".mobi", ".epub", ".pdf"]
+    exts = [".mobi", ".epub", ".pdf", "jpeg"]
     return any([filename.endswith(ext) for ext in exts])
 
 
