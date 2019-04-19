@@ -1,0 +1,9 @@
+---
+
+sender: loyalpartner@163.com
+receivers:
+  - loyalpartner@163.com
+  - loyalpartner@kindle.cn
+  - loyalpartner_91@kindle.cn
+smtp: smtp.163.com
+
