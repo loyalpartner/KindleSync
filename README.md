@@ -1,2 +1,5 @@
 # KindleSync
-同步Kindle
+
+将下载的电子书同步到 Kindle
+
+
