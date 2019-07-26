@@ -38,6 +38,11 @@ class KindleSync:
         self.msg['To'] = formataddr(["kindle", self.receivers[0]])
         self.msg['Subject'] = "电子书同步"
 
+    def add_attachs(self, files):
+        """添加多个附件"""
+        for file in files:
+            self.add_attach(file)
+
     def add_attach(self, filename):
         """ 添加附件"""
         self.attaches.append(filename)
@@ -50,6 +55,11 @@ class KindleSync:
 
     def sync(self):
         """ sync """
+
+        if self.attaches == []:
+            print("没有附件!")
+            return
+
         title = "\r\n".join(self.attaches)
         self.msg.attach(MIMEText(title, 'plain', 'utf-8'))
 
@@ -83,8 +93,7 @@ def main():
         config.get("sender"), config.get("receivers"), config.get("smtp"),
         password)
 
-    for file in files:
-        sync_tool.add_attach(file)
+    sync_tool.add_attachs(files)
 
     sync_tool.sync()
 
