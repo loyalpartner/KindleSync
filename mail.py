@@ -90,7 +90,9 @@ def main():
     password = open("pwd").readline().strip()
 
     sync_tool = KindleSync(
-        config.get("sender"), config.get("receivers"), config.get("smtp"),
+        config.get("sender"), 
+        config.get("receivers"), 
+        config.get("smtp"),
         password)
 
     sync_tool.add_attachs(files)
