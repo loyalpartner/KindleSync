@@ -71,7 +71,7 @@ class KindleSync:
 
             for file in self.attaches:
                 os.remove(file)
-        except smtplib.SMTPException:
+        except smtplib.SMTPException as ex:
             print("Error: 无法发送邮件")
 
 
@@ -83,7 +83,7 @@ def is_ebooks(filename):
 
 def main():
     """main"""
-    config = yaml.load(open("config.yaml"))
+    config = yaml.load(open("config.yaml"), Loader=yaml.FullLoader)
 
     files = list(filter(is_ebooks, os.listdir()))
 
